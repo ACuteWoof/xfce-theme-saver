@@ -52,6 +52,7 @@ function load(){
     echo "Done... Removing temp folder"
     cd ..
     rm -rf $1
+    killall xfconfd
 }
 
 # DRIVER CODE
