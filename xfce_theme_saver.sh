@@ -27,7 +27,7 @@ function save(){
     done
 
     echo "Copying GTK config file..."
-    cp '.gtkrc-2.0' "$1/gtkrc-2.0"
+    cp '~/.gtkrc-2.0' "$1/gtkrc-2.0"
 
     echo "Archiving..."
     tar czf $1.tar.gz $1
