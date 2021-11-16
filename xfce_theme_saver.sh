@@ -12,6 +12,7 @@ function check_folders(){
     for i in ${folders[@]}; do
         [ ! -d $i ] && echo "$i/ does not exist..." && return 1
     done
+    [ ! -d ~/.gtkrc-2.0 ] && echo "~/.gtkrc-2.0 does not exist..." && return 1
 
     echo "Done"
     return 0;
@@ -47,7 +48,7 @@ function load(){
     echo "Granting Permissions..."
     sudo chown -R $USERNAME:users ./*
 
-    echo "Placing folders and files in their location..."
+    echo "Placing folders and file(s) in their location..."
     for i in {0..5}; do
         sudo cp -r ${folders2[i]}/* ${folders[i]}
         sudo cp "gtkrc-2.0" "~/.gtkrc-2.0"
