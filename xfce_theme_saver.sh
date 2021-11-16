@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# RELEVANT FOLDERS
+# RELEVANT FOLDERS/FILES
 folders=(~/.config/xfce4 ~/.local/share/xfce4 /etc/xdg/xfce4 ~/.config/Thunar /etc/xdg/Thunar /etc/xdg/menus)
 folders2=(config-xfce4 local-xfce4 etc-xfce4 config-Thunar etc-Thunar etc-menus)
 
@@ -26,6 +26,9 @@ function save(){
         cp -r ${folders[i]} $1/${folders2[i]}
     done
 
+    echo "Copying GTK config file..."
+    cp '.gtkrc-2.0' "$1/gtkrc-2.0"
+
     echo "Archiving..."
     tar czf $1.tar.gz $1
 
@@ -44,9 +47,10 @@ function load(){
     echo "Granting Permissions..."
     sudo chown -R $USERNAME:users ./*
 
-    echo "Placing folders in their location..."
+    echo "Placing folders and files in their location..."
     for i in {0..5}; do
         sudo cp -r ${folders2[i]}/* ${folders[i]}
+        sudo cp "gtkrc-2.0" "~/.gtkrc-2.0"
     done
 
     echo "Done... Removing temp folder"
